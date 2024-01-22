@@ -10,10 +10,15 @@ sourcePath = os.path.join(myPath, "source")
 
 def gen_json(sticker_board, times, name, author):
 
+    first = []
+    second = []
+
     if len(sticker_board) > 30 :
         half = len(sticker_board)//2
         first = sticker_board[:half]
         second = sticker_board[half:]
+    else:
+        first = sticker_board
 
     i = 0
     while i < 2:
@@ -24,7 +29,11 @@ def gen_json(sticker_board, times, name, author):
             type = second
             str_identifier = str(times) + "2"
             str_pack = name + "part2"
-        i+=1
+        if second == []:
+            i+=2
+        else:    
+            i+=1
+
         cTrayIcon = Image.open(type[0])
          
         
