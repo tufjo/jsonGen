@@ -6,12 +6,16 @@ import pandas as pd
 import requests
 from convertToJSON import gen_json
 
-theCSV = 'jsonGenTest.csv'
-theJson = 'jsonGenTest.json'
-
 myPath = os.path.dirname(__file__) #jsonGenFolder
 sourcePath = os.path.join(myPath, "source")
+outPath = os.path.join(myPath, "output")
 dictPath = os.path.join(myPath, 'dict')
+
+def createFolders():
+    list = [sourcePath, outPath, dictPath]
+    for item in list:
+        if not os.path.exists(item):
+            os.makedirs(item)
 
 def delayTime(path, name):
    dirPath = os.path.join(path, name)
