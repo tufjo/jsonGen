@@ -8,7 +8,7 @@ myPath = os.path.dirname(__file__)
 outputPath = os.path.join(myPath, "output")
 sourcePath = os.path.join(myPath, "source")
 
-def gen_json(sticker_board, times, name, author):
+def gen_json(sticker_board, id, name, author):
 
     first = []
     second = []
@@ -23,11 +23,11 @@ def gen_json(sticker_board, times, name, author):
     i = 0
     while i < 2:
         type = first
-        str_identifier = times
+        str_identifier = id
         str_pack = name
         if i == 1:
             type = second
-            str_identifier = str(times) + "2"
+            str_identifier = str(id) + "p2"
             str_pack = name + "part2"
         if second == []:
             i+=2
@@ -35,8 +35,6 @@ def gen_json(sticker_board, times, name, author):
             i+=1
 
         cTrayIcon = Image.open(type[0])
-         
-        
         str_author = author
 
         # Convert tray icon to base64
@@ -46,7 +44,7 @@ def gen_json(sticker_board, times, name, author):
 
         array_stickers = []
         str_stickers = []
-        print("got in")
+
         for img_path in type:
             temp_canvas = Image.new('RGBA', (512, 512), (255, 255, 255, 0))
             temp_img = Image.open(img_path)
@@ -71,4 +69,4 @@ def gen_json(sticker_board, times, name, author):
 
         with open(os.path.join(outputPath, str_pack + '.json'), 'w', encoding='utf-8') as json_file:
             json.dump(out_json, json_file, ensure_ascii=False, indent=2)
-            print("yay")
+            print("File "+str_pack+" written!")
