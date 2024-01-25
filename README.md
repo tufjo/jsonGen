@@ -1,4 +1,7 @@
-<h1>Automatically download and convert .json for Whatsapp from Webscrap .csv</h1>
+<p align="center">
+<img src=".\img_src\thumb.png" />
+</p>
+<h1>Line Store Webscrap to Whatsapp Sticker :D</h1>
 Currently it's totally functional despite the rough look
 <br>This is a very niche use case but I feel like someone out there might also need it so here it is
 <br>
@@ -17,8 +20,16 @@ git clone https://github.com/tufjo/jsonGen
 pip install Pillow
 pip install pandas
 pip install requests
+pip install customtkinter
 ```
 
-Open main.py with a run time software of your choice eg. vscode
+Currently it doesn't ship with a executable file the only way is to open main.py with a run time software of your choice eg. vscode
 <br>run the code and Voila! there you have the thing!
-<br> just select a file and click on process & convert and you'll get your stickers ready!
+<br>just select your csv and click on process & convert and you'll get your stickers ready!
+<br>note: before exporting your .csv, make sure there are three columns named:
+
+```sh
+#example
+|     sticker     | sticker-href | author |
+| awesome_sticker | https://link | tufjo_ |
+```

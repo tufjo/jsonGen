@@ -9,9 +9,30 @@ outputPath = os.path.join(myPath, "output")
 sourcePath = os.path.join(myPath, "source")
 
 def gen_json(sticker_board, id, name, author):
+    if sticker_board == []:
+       return
 
     first = []
     second = []
+
+    for item in sticker_board:
+        if item.endswith("tab_on@2x.png"):
+            cTrayIcon = Image.open(item)
+            image_size = cTrayIcon.size
+            fsize = (96,96)
+
+            left = (image_size[0] - fsize[0]) // 2
+            top = (image_size[1] - fsize[1]) // 2
+            right = left + fsize[0]
+            bottom = top + fsize[1]
+
+            cropped_image = cTrayIcon.crop((left, top, right, bottom))
+            resized_image = cropped_image.resize(fsize, Image.LANCZOS)
+
+            #Convert tray icon to base64
+            buffered_tray = BytesIO()
+            resized_image.save(buffered_tray, format="PNG")
+            str_tray_icon = base64.b64encode(buffered_tray.getvalue()).decode('utf-8')
 
     if len(sticker_board) > 30 :
         half = len(sticker_board)//2
@@ -34,13 +55,7 @@ def gen_json(sticker_board, id, name, author):
         else:    
             i+=1
 
-        cTrayIcon = Image.open(type[0])
         str_author = author
-
-        # Convert tray icon to base64
-        buffered_tray = BytesIO()
-        cTrayIcon.save(buffered_tray, format="PNG")
-        str_tray_icon = base64.b64encode(buffered_tray.getvalue()).decode('utf-8')
 
         array_stickers = []
         str_stickers = []

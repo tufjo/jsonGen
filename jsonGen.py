@@ -19,9 +19,11 @@ def createFolders():
 
 def delayTime(path, name):
    dirPath = os.path.join(path, name)
-   while os.listdir(dirPath) == []:
-      time.sleep(1)
-      print('waiting...')
+   i = 0
+   while os.listdir(dirPath) == [] and i < 3:
+    time.sleep(1)
+    i+=1
+    print('waiting...')
 
 def csv_to_json(CSVpath):
     data = pd.read_csv(CSVpath)
@@ -35,10 +37,8 @@ id = ''
 def download_file(item):
     print('downloading...')
     global id
-
     # check if directory exists
     os.makedirs('source', exist_ok=True)
-
     id=''
     pr = item.split('/')[-2]
     tt = "https://dl.stickershop.line.naver.jp/products/0/0/1/" + pr + "/iphone/stickers@2x.zip"
@@ -54,10 +54,12 @@ def download_file(item):
     else:
         print(f"Failed to download file. Status code: {response.status_code}")
     id=pr
-    print('Downloaded!')
+    
 
 def unZip(path):
-    print('unzipping...')   
+    if os.listdir(path) == []:
+       return
+    print('unzipping...')
     with zipfile.ZipFile(os.path.join(path, "stickers@2x.zip"), 'r') as zip_ref:
         zip_ref.extractall(sourcePath)
     print('Unzipped!')
@@ -65,12 +67,14 @@ def unZip(path):
 image_list = []
 
 def loadImage(path):
+    if os.listdir(path) == []:
+       return
     print('loading images...')
     global image_list
     image_list = []
     files = os.listdir(path)
     for file in files:
-        if file.endswith("@2x.png") and not (file.endswith("key@2x.png") or file.endswith("tab_off@2x.png") or file.endswith("tab_on@2x.png")):
+        if file.endswith("@2x.png") and not (file.endswith("key@2x.png") or file.endswith("tab_off@2x.png")):
            image_list.append(os.path.join(sourcePath, file))
     print('Loaded!')
     
@@ -96,6 +100,8 @@ def jsonGenerator(self, name):
             print("no files")
         else:
            delete_files(sourcePath)
+
+        
 
         download_file(item)
         delayTime(myPath, 'source')
