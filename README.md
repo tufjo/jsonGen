@@ -2,7 +2,7 @@
 <img src=".\img_src\thumb.png" />
 </p>
 <h1>Line Store Webscrap to Whatsapp Sticker :D</h1>
-Currently it's totally functional despite the rough look
+Currently, it's totally functional despite the rough look (it currently only supports static stickers, not emojis and animated stickers)
 <br>This is a very niche use case but I feel like someone out there might also need it so here it is
 <br>
 <br>To use this current version follow the following instruction:
