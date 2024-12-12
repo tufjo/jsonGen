@@ -23,7 +23,7 @@ pip install requests
 pip install customtkinter
 ```
 
-Currently it doesn't ship with a executable file the only way is to open main.py with a run time software of your choice eg. vscode
+Currently, it doesn't ship with an executable file the only way is to open main.py with a IDE of your choice eg. vscode
 <br>run the code and Voila! there you have the thing!
 <br>just select your csv and click on process & convert and you'll get your stickers ready!
 <br>note: before exporting your .csv, make sure there are three columns named:
