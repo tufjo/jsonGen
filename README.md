@@ -30,5 +30,6 @@ Currently, it doesn't ship with an executable file the only way is to open main.
 
 #example
 |     sticker     | sticker-href | author |
-| awesome_sticker | https://link | tufjo_ |
+| ------------- | ------------- |---------|
+| sticker_name | https://link | tufjo_ |
 
