@@ -28,8 +28,7 @@ Currently, it doesn't ship with an executable file the only way is to open main.
 <br>just select your csv and click on process & convert and you'll get your stickers ready!
 <br>note: before exporting your .csv, make sure there are three columns named:
 
-```sh
 #example
 |     sticker     | sticker-href | author |
 | awesome_sticker | https://link | tufjo_ |
-```
+
